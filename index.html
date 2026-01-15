@@ -1,425 +1,238 @@
-!DOCTYPE html>  <html lang="id">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Bulus King Coin ($BKCO)</title>  
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Luckiest+Guy&display=swap" rel="stylesheet">  <style>  
-    /* --- 1. SETUP DASAR --- */  
-    * {  
-        box-sizing: border-box;  
-        margin: 0;  
-        padding: 0;  
-    }  
 
-    body {  
-        font-family: 'Inter', sans-serif;  
-        background-color: #050505;   
-        color: white;  
-        line-height: 1.5;  
-        overflow-x: hidden;  
-    }  
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Whale - Liquidity Safety & Transparency</title>
 
-    .mobile-container {  
-        max-width: 450px;  
-        margin: 0 auto;  
-        border-left: 1px solid #1f2937;  
-        border-right: 1px solid #1f2937;  
-        min-height: 100vh;  
-        position: relative;  
-        background-color: #050505;  
-    }  
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    /* --- 2. FONTS & WARNA --- */  
-    h1, h2, h3, .meme-font {  
-        font-family: 'Luckiest Guy', cursive;  
-        letter-spacing: 1px;  
-    }  
+<style>
+:root {
+    --bg-dark: #050505;
+    --text-main: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --accent-gold: #c5a059;
+    --accent-blue: #14f195;
+    --glass-bg: rgba(255,255,255,0.03);
+    --glass-border: rgba(255,255,255,0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0,0,0,0.3);
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Raleway', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; outline:none; }
+body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height:1.6; overflow-x:hidden; min-height:100vh; position:relative; }
 
-    .text-gradient {  
-        background: linear-gradient(to right, #fbbf24, #f59e0b);  
-        -webkit-background-clip: text;  
-        -webkit-text-fill-color: transparent;  
-    }  
+/* Particles Background */
+#particles-js { position:fixed; width:100%; height:100%; top:0; left:0; z-index:-1; background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 80%); }
 
-    .text-yellow { color: #fbbf24; }  
-    .text-purple { color: #c084fc; }  
-    .text-green { color: #4ade80; }  
-    .text-blue { color: #60a5fa; }  
-    .text-red { color: #f87171; }  
-    .text-gray { color: #9ca3af; }  
+/* Typography */
+h1,h2,h3 { font-family: var(--font-title); color:white; text-transform:uppercase; letter-spacing:3px; }
+h1 { font-size:4rem; margin-bottom:0.5rem; background: linear-gradient(45deg,#ffffff,#c5a059,#ffffff); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation: shineText 5s linear infinite; text-align:center; }
+.subtitle { text-align:center; font-size:1.1rem; color:var(--accent-gold); margin-bottom:2rem; font-weight:300; letter-spacing:2px; opacity:0.9; }
 
-    .glass-panel {  
-        background: rgba(20, 20, 30, 0.7);  
-        backdrop-filter: blur(10px);  
-        border: 1px solid rgba(255, 255, 255, 0.1);  
-        border-radius: 16px;  
-    }  
+/* Layout */
+.container { max-width:900px; margin:0 auto; padding:4rem 2rem; position:relative; z-index:1; }
 
-    /* --- 3. KOMPONEN --- */  
-    .navbar {  
-        display: flex;  
-        justify-content: space-between;  
-        align-items: center;  
-        padding: 20px;  
-        position: sticky;  
-        top: 0;  
-        z-index: 100;  
-        background-color: rgba(5, 5, 5, 0.95);  
-        border-bottom: 1px solid #1f2937;  
-    }  
+/* Cards / Glassmorphism */
+.card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border:1px solid var(--glass-border); border-radius:16px; padding:2.5rem; box-shadow: var(--glass-shadow); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; position: relative; overflow:hidden; }
+.card:hover { transform: translateY(-8px); border-color: rgba(197,160,89,0.4); box-shadow:0 15px 40px rgba(197,160,89,0.1); }
+.card::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); transition:0.5s; pointer-events:none; }
+.card:hover::before { left:100%; }
 
-    .nav-brand { font-size: 24px; color: white; text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }  
+.card-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
 
-    .btn-status {  
-        background-color: #374151;  
-        color: #fbbf24;  
-        padding: 8px 20px;  
-        border-radius: 50px;  
-        text-decoration: none;  
-        font-weight: bold;  
-        font-size: 12px;  
-        border: 1px solid #fbbf24;  
-    }  
+/* Header image */
+.header-image { max-width:450px; width:100%; border-radius:20px; margin-bottom:2rem; box-shadow:0 0 50px rgba(197,160,89,0.15); transition: transform 0.5s ease; }
+.header-image:hover { transform: scale(1.02); }
 
-    .hero {  
-        text-align: center;  
-        padding: 60px 20px;  
-        position: relative;  
-        overflow: hidden;  
-    }  
+/* Contract Address Box */
+.ca-wrapper { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border:1px solid var(--accent-gold); border-radius:12px; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; max-width:700px; margin:2rem auto; box-shadow:0 0 20px rgba(197,160,89,0.1); transition:0.3s; cursor:pointer; }
+.ca-wrapper:hover { box-shadow:0 0 30px rgba(197,160,89,0.3); background: rgba(255,255,255,0.08); }
+.ca-text { font-family:'Courier New', monospace; font-size:0.95rem; color:#fff; word-break: break-all; text-align:left; }
+.copy-btn { background: var(--accent-gold); color:#000; border:none; padding:0.7rem 1.5rem; font-family: var(--font-title); font-weight:700; border-radius:8px; cursor:pointer; transition:all 0.3s ease; }
+.copy-btn:hover { background:#fff; transform:scale(1.05); }
+.copy-btn:active { transform:scale(0.95); }
 
-    .glow-bg {  
-        position: absolute;  
-        top: 50%;  
-        left: 50%;  
-        transform: translate(-50%, -50%);  
-        width: 300px;  
-        height: 300px;  
-        background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(0,0,0,0) 70%);  
-        z-index: 0;  
-        pointer-events: none;  
-    }  
+/* BUY button */
+.buy-btn { display:inline-block; margin-top:2rem; padding:1.2rem 4rem; background: linear-gradient(135deg, #a08035 0%, #d4b06a 50%, #a08035 100%); background-size:200% auto; color:#050505; text-decoration:none; font-family:var(--font-title); font-weight:700; font-size:1.4rem; border-radius:50px; box-shadow:0 0 30px rgba(197,160,89,0.4); border:1px solid rgba(255,255,255,0.3); animation: shineBtn 3s infinite linear; transition: transform 0.3s; }
+.buy-btn:hover { transform: translateY(-4px) scale(1.05); box-shadow:0 0 50px rgba(197,160,89,0.7); color:#fff; }
 
-    .hero h1 { font-size: 48px; line-height: 1.1; margin-bottom: 16px; position: relative; z-index: 1; }  
-    .hero p { font-size: 14px; color: #d1d5db; margin-bottom: 30px; position: relative; z-index: 1; padding: 0 10px; }  
+/* Trust Proof Accordion */
+details.trust-item { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); margin-bottom:1rem; border-radius:8px; overflow:hidden; transition:all 0.3s ease; cursor:pointer; }
+details.trust-item:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-gold); }
+details.trust-item[open] { background: rgba(197,160,89,0.05); border-color: var(--accent-gold); }
+summary { padding:1.2rem; font-family: var(--font-title); font-weight:600; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+summary::after { content:'+'; font-size:1.5rem; color: var(--accent-gold); transition: transform 0.3s; }
+details[open] summary::after { content:'-'; transform: rotate(180deg); }
+.details-content { padding:0 1.2rem 1.2rem 1.2rem; color: var(--text-muted); font-size:0.95rem; border-top:1px solid rgba(255,255,255,0.05); margin-top:0.5rem; padding-top:1rem; animation:fadeIn 0.5s ease; }
+.check-green { color: var(--accent-blue); margin-right:10px; }
 
-    .tag-king {  
-        display: inline-block;  
-        background: rgba(251, 191, 36, 0.1);  
-        border: 1px solid #fbbf24;  
-        color: #fbbf24;  
-        padding: 5px 15px;  
-        border-radius: 20px;  
-        font-size: 12px;  
-        font-weight: bold;  
-        margin-bottom: 20px;  
-    }  
+/* Token Data */
+.token-data li { display:flex; justify-content:space-between; padding:1rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.token-data li:last-child { border-bottom:none; }
+.bar-bg { background: rgba(255,255,255,0.1); height:10px; border-radius:5px; overflow:hidden; margin-top:5px; position:relative; }
+.bar-fill { height:100%; border-radius:5px; background: linear-gradient(90deg, #c5a059, #e0c878, #c5a059); background-size:200% auto; box-shadow:0 0 8px #c5a059; transition:width 1.5s ease-out; animation: shineBar 2s linear infinite; }
+@keyframes shineBar { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
 
-    .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; position: relative; z-index: 2; }  
-    .btn-social {  
-        padding: 16px;  
-        border-radius: 12px;  
-        font-weight: bold;  
-        text-align: center;  
-        text-decoration: none;  
-        color: white;  
-        font-size: 14px;  
-        display: flex;  
-        align-items: center;  
-        justify-content: center;  
-        gap: 10px;  
-        transition: transform 0.2s;  
-    }  
-    .btn-social:active { transform: scale(0.98); }  
-      
-    /* TOMBOL BARU UNTUK PUMP.FUN */  
-    .btn-pump {   
-        background: linear-gradient(90deg, #10b981, #059669);   
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);   
-        border: 1px solid #34d399;  
-        font-size: 16px; /* Lebih besar sedikit biar menonjol */  
-        text-transform: uppercase;  
-    }  
+/* Footer */
+.footer { margin-top:6rem; padding:3rem 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); border-top:1px solid rgba(255,255,255,0.05); text-align:center; backdrop-filter:blur(5px); }
+.social-links { display:flex; justify-content:center; gap:2rem; margin-bottom:2rem; }
+.social-links a { color: var(--text-muted); font-size:1.5rem; transition: all 0.3s; }
+.social-links a:hover { color: var(--accent-gold); transform:translateY(-3px); text-shadow:0 0 10px var(--accent-gold); }
 
-    /* TOMBOL BARU UNTUK PHANTOM */
-    .btn-phantom {
-        background: linear-gradient(90deg, #AB9FF2, #8A7CD8); /* Warna khas Phantom */
-        box-shadow: 0 4px 15px rgba(171, 159, 242, 0.3);
-        border: 1px solid #AB9FF2;
-        color: #fff; /* Teks putih agar kontras */
-    }
-      
-    .btn-tele { background-color: #5865F2; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); }  
-    .btn-x { background-color: #000; border: 1px solid #374151; }  
+/* Animations */
+@keyframes shineBtn {0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+@keyframes shineText {0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+@keyframes fadeIn {from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);}}
 
-    .marquee-wrap {  
-        background: #fbbf24;  
-        color: black;  
-        padding: 12px 0;  
-        overflow: hidden;  
-        border-top: 4px solid black;  
-        border-bottom: 4px solid black;  
-        transform: rotate(-2deg);  
-        margin: 30px -10px 40px;  
-        position: relative;  
-        z-index: 5;  
-    }  
-    .marquee-content {  
-        white-space: nowrap;  
-        display: inline-block;  
-        animation: marquee 10s linear infinite;  
-        font-weight: bold;  
-        font-size: 20px;  
-    }  
-
-    .section { padding: 40px 20px; }  
-    .section-title { font-size: 36px; text-align: center; margin-bottom: 30px; text-shadow: 0 0 20px rgba(255,255,255,0.2); }  
-
-    .token-card {  
-        display: flex;  
-        align-items: center;  
-        gap: 15px;  
-        padding: 20px;  
-        margin-bottom: 15px;  
-        border-left: 5px solid;  
-    }  
-    .token-icon { font-size: 28px; }  
-    .token-label { font-size: 12px; color: #9ca3af; font-weight: bold; letter-spacing: 1px; }  
-    .token-value { font-size: 20px; font-weight: bold; }  
-
-    .roadmap-container {  
-        max-width: 380px;  
-        margin: 0 auto;  
-        padding-left: 20px;  
-        position: relative;  
-    }  
-    .roadmap-line {  
-        position: absolute;  
-        left: 39px;  
-        top: 20px;  
-        bottom: 20px;  
-        width: 4px;  
-        background: linear-gradient(to bottom, #fbbf24, #a855f7, #22c55e, #3b82f6, #ef4444);  
-        border-radius: 10px;  
-        z-index: 0;  
-    }  
-    .roadmap-item {  
-        display: flex;  
-        align-items: flex-start;  
-        margin-bottom: 40px;  
-        position: relative;  
-        z-index: 1;  
-    }  
-    .phase-circle {  
-        width: 42px;  
-        height: 42px;  
-        border-radius: 50%;  
-        display: flex;  
-        justify-content: center;  
-        align-items: center;  
-        font-weight: bold;  
-        border: 4px solid #050505;  
-        flex-shrink: 0;  
-        font-family: 'Luckiest Guy', cursive;  
-        color: black;  
-    }  
-    .phase-box {  
-        margin-left: 20px;  
-        flex: 1;  
-        padding: 16px;  
-        border-top: 3px solid;  
-        background: rgba(30,30,40, 0.6);  
-    }  
-    .phase-title { font-size: 18px; margin-bottom: 8px; }  
-    .phase-list { list-style: none; padding: 0; }  
-    .phase-list li {  
-        font-size: 12px;  
-        color: #d1d5db;  
-        margin-bottom: 4px;  
-        display: flex;  
-        align-items: center;  
-    }  
-    .phase-list li::before {  
-        content: "•";  
-        color: #6b7280;  
-        margin-right: 8px;  
-    }  
-
-    footer {  
-        text-align: center;  
-        padding: 40px 20px;  
-        border-top: 1px solid #1f2937;  
-        background: #000;  
-    }  
-
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }  
+.gold-text { color: var(--accent-gold); }
+.text-center { text-align:center; }
+.mt-2 { margin-top:2rem; }
 </style>
+</head>
+<body>
 
-</head>  
-<body>  <div class="mobile-container">  <nav class="navbar">  
-    <div class="nav-brand meme-font">$BKCO</div>  
-    <a href="#" class="btn-status">COMING SOON</a>  
-</nav>  
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
+<div id="particles-js"></div>
 
-<section class="hero">  
-    <div class="glow-bg"></div>  
-    <div class="tag-king">👑 KING OF SOLANA</div>  
-    <h1>THE KING <br> <span class="text-gradient">IS COMING</span></h1>  
-    <p>  
-        Slow steady wins the race. We don't chase pumps, we build empires. Join the community before launch! 🚀  
-    </p>  
+<div class="container">
 
-    <div class="btn-group">  
-        <a href="http://pump.fun" target="_blank" class="btn-social btn-pump">  
-            <span>💊</span> BUY ON PUMP.FUN  
-        </a>  
+    <!-- Header Video & Title -->
+    <div class="section text-center" data-aos="fade-down" data-aos-duration="1000">
+        <video class="header-image" autoplay loop muted playsinline>
+            <source src="https://drwhale-dev.github.io/1768454578561.mp4" type="video/mp4">
+        </video>
+        <h1>Dr Whale</h1>
+        <p class="subtitle">Liquidity Safety &bull; Transparency &bull; Sustainability</p>
+        <p style="max-width:600px;margin:0 auto 2rem auto;">
+            Reduce avoidable risk through clear structure and verifiable on-chain mechanisms. Pure DeFi, no gimmicks.
+        </p>
 
-        <a href="https://phantom.com" target="_blank" class="btn-social btn-phantom">
-            <span>👻</span> BUY ON PHANTOM
-        </a>
+        <!-- Contract Address -->
+        <div class="ca-wrapper" onclick="copyAddress(); playClick();">
+            <div>
+                <div style="font-size:0.7rem;color:var(--accent-gold);letter-spacing:1px;margin-bottom:5px;">OFFICIAL SOLANA CONTRACT</div>
+                <span class="ca-text" id="contractAddress">GANTI_DENGAN_ADDRESS_SOLANA_ANDA_DISINI</span>
+            </div>
+            <button class="copy-btn">COPY</button>
+        </div>
 
-        <a href="https://t.me/Bkcobuluskingcoin" target="_blank" class="btn-social btn-tele">  
-            <span>✈️</span> JOIN TELEGRAM  
-        </a>  
-        <a href="https://x.com/BkcoBulus" target="_blank" class="btn-social btn-x">  
-            <span>✖️</span> FOLLOW TWITTER  
-        </a>  
-    </div>  
-      
-    <p style="font-size: 10px; color: #6b7280; margin-top: 10px;">  
-        *Contract Address will be released at launch.  
-    </p>  
-</section>  
+        <a href="https://pump.fun" target="_blank" class="buy-btn" onmouseenter="playClick()">BUY NOW</a>
+    </div>
 
-<section class="section">  
-    <h2 class="section-title meme-font">PHILOSOPHY</h2>  
-    <div class="glass-panel" style="padding: 25px; text-align: center; border-color: #fbbf24;">  
-        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; margin-bottom: 15px;">  
-            <span class="text-yellow" style="font-weight: bold; font-size: 18px;">Bulus King Coin ($BKCO)</span> is a memecoin inspired by the bulus  
-            philosophy: <span class="text-gradient" style="font-weight: bold;">slow, steady, don't panic, and always arrive at the finish line.</span>  
-        </p>  
-        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; margin-bottom: 15px;">  
-            In a crypto world full of FOMO, chaos, and instant gratification, BKCO stands as a symbol of "slow but sure." BKCO isn't just a token - it's a movement. A movement for those who believe that those who relax are more consistent, those who don't panic go further, and those who move slowly often become kings in the end.  
-        </p>  
-        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">  
-            With a solid community, fun vibe, and unique identity, Bulus King Coin brings a new energy to the memecoin world: <span class="text-yellow">slow steady, and accelerating at the right time.</span>   
-            <br><br>  
-            <span class="meme-font" style="font-size: 18px;">Bulus first . King later . BKCO forever.</span>  
-        </p>  
-    </div>  
-</section>  
+    <!-- Design & Network Cards -->
+    <div class="card-grid" data-aos="fade-up">
+        <div class="card">
+            <h3><i class="fas fa-drafting-compass gold-text"></i> Design Approach</h3><br>
+            <ul style="padding-left:1.2rem;color:var(--text-muted);">
+                <li>Fixed supply</li>
+                <li>Permanently removed liquidity control</li>
+                <li>Minimal token mechanics</li>
+                <li>Fully verifiable on-chain data</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-network-wired gold-text"></i> Network</h3><br>
+            <p><strong>Blockchain:</strong> <span style="color: var(--accent-blue)">Solana</span></p>
+            <p>Chosen for high throughput, low transaction costs, and mature infrastructure.</p>
+        </div>
+    </div>
 
-<div class="marquee-wrap">  
-    <div class="marquee-content meme-font">  
-        SLOW & STEADY WIN THE RACE • LAUNCHING SOON • NO RUG PULL •   
-        SLOW & STEADY WIN THE RACE • LAUNCHING SOON • NO RUG PULL •  
-    </div>  
-</div>  
+    <!-- Trust Proof -->
+    <h2 data-aos="fade-right">Trust Proof</h2>
+    <div class="card-grid" data-aos="fade-up">
+        <div>
+            <details class="trust-item" onclick="playClick()">
+                <summary><span class="check-green">✔</span> No Creator Liquidity</summary>
+                <div class="details-content">
+                    Liquidity is automatically created and managed by the Pump.fun protocol. The creator receives 0 LP tokens and cannot rug pull liquidity.
+                </div>
+            </details>
 
-<section class="section" style="background: linear-gradient(to bottom, #050505, #1a0b2e);">  
-    <h2 class="section-title meme-font">TOKENOMICS</h2>  
-    <div class="token-card glass-panel" style="border-color: #c084fc;">  
-        <div class="token-icon">💰</div>  
-        <div>  
-            <p class="token-label">TOTAL SUPPLY</p>  
-            <p class="token-value meme-font text-purple">1,000,000,000</p>  
-        </div>  
-    </div>  
-    <div class="token-card glass-panel" style="border-color: #60a5fa;">  
-        <div class="token-icon">⚡</div>  
-        <div>  
-            <p class="token-label">NETWORK</p>  
-            <p class="token-value meme-font text-blue">SOLANA (SOL)</p>  
-        </div>  
-    </div>  
-    <div class="token-card glass-panel" style="border-color: #4ade80;">  
-        <div class="token-icon">🔥</div>  
-        <div>  
-            <p class="token-label">LIQUIDITY</p>  
-            <p class="token-value meme-font text-green">BURNT FOREVER</p>  
-        </div>  
-    </div>  
-</section>  
+            <details class="trust-item" onclick="playClick()">
+                <summary><span class="check-green">✔</span> Contract Verified</summary>
+                <div class="details-content">
+                    Token mint and parameters are publicly verifiable on Solana explorer. No hidden functions.
+                    <br><a href="#" class="link-arrow">View on Solscan <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </details>
 
-<section class="section" style="background: rgba(0,0,0,0.5);">  
-    <h2 class="section-title meme-font">ROADMAP</h2>  
-    <div class="roadmap-container">  
-        <div class="roadmap-line"></div>  
+            <details class="trust-item" onclick="playClick()">
+                <summary><span class="check-green">✔</span> Mint Disabled</summary>
+                <div class="details-content">
+                    Fixed supply of 1 Billion. No additional tokens can ever be minted, preventing inflation attacks.
+                </div>
+            </details>
+        </div>
+        <div class="card">
+            <h3>Scope & Intent</h3><br>
+            <p><strong>Intended as:</strong> A long-term, low-complexity on-chain asset.</p>
+            <p><strong>Not:</strong> A get-rich-quick scheme or guaranteed investment.</p>
+            <div style="border-left:3px solid var(--accent-gold); padding-left:1rem; margin-top:1rem;">
+                <em style="color:#ccc;font-size:0.9rem;">"Simple is the ultimate sophistication."</em>
+            </div>
+        </div>
+    </div>
 
-        <div class="roadmap-item">  
-            <div class="phase-circle" style="background: #fbbf24; box-shadow: 0 0 15px #fbbf24;">1</div>  
-            <div class="phase-box glass-panel" style="border-color: #fbbf24;">  
-                <h3 class="phase-title meme-font text-yellow">PHASE 1</h3>  
-                <ul class="phase-list">  
-                    <li>Concept & Branding</li>  
-                    <li>Token Deploy (SOL)</li>  
-                    <li>Launch Pump.fun</li>  
-                    <li>Website ,telegram & X Live</li>  
-                </ul>  
-            </div>  
-        </div>  
+    <!-- Token Data & Allocation -->
+    <h2 data-aos="fade-right">Token Data</h2>
+    <div class="card-grid" data-aos="zoom-in-up">
+        <div class="card">
+            <ul class="token-data">
+                <li><span>Name</span> <strong>Dr Whale</strong></li>
+                <li><span>Symbol</span> <strong>DRW</strong></li>
+                <li><span>Supply</span> <strong>1,000,000,000</strong></li>
+                <li><span>Type</span> <strong>Fixed / No Tax</strong></li>
+            </ul>
+        </div>
 
-        <div class="roadmap-item">  
-            <div class="phase-circle" style="background: #c084fc; box-shadow: 0 0 15px #c084fc; color:white;">2</div>  
-            <div class="phase-box glass-panel" style="border-color: #c084fc;">  
-                <h3 class="phase-title meme-font text-purple">PHASE 2</h3>  
-                <ul class="phase-list">  
-                    <li>Community Growth</li>  
-                    <li>1K-5K Holders</li>  
-                    <li>DEX Migration</li>  
-                    <li>Meme Contests</li>  
-                </ul>  
-            </div>  
-        </div>  
+        <div class="card">
+            <h3 class="text-center gold-text">Tokenomics Overview</h3>
+            <p class="text-center" style="color: var(--text-muted); font-size:0.9rem;">Visualized allocation & live stats for Dr Whale token.</p>
 
-        <div class="roadmap-item">  
-            <div class="phase-circle" style="background: #4ade80; box-shadow: 0 0 15px #4ade80;">3</div>  
-            <div class="phase-box glass-panel" style="border-color: #4ade80;">  
-                <h3 class="phase-title meme-font text-green">PHASE 3</h3>  
-                <ul class="phase-list">  
-                    <li>10K+ Holders</li>  
-                    <li>CG & CMC Apply</li>  
-                    <li>Influencer Collabs</li>  
-                    <li>Trending on X</li>  
-                </ul>  
-            </div>  
-        </div>  
+            <!-- Pie Chart -->
+            <canvas id="allocationChart" style="max-width:350px;margin:2rem auto;display:block;"></canvas>
 
-        <div class="roadmap-item">  
-            <div class="phase-circle" style="background: #60a5fa; box-shadow: 0 0 15px #60a5fa; color:white;">4</div>  
-            <div class="phase-box glass-panel" style="border-color: #60a5fa;">  
-                <h3 class="phase-title meme-font text-blue">PHASE 4</h3>  
-                <ul class="phase-list">  
-                    <li>50K - 100K+ Holders</li>  
-                    <li>NFT/Game Utility</li>  
-                    <li>potential CEX Listing</li>  
-                    <li>Partnerships</li>  
-                </ul>  
-            </div>  
-        </div>  
+            <!-- Gradient Animated Bars -->
+            <div style="margin-top:2rem;">
+                <div class="alloc-item">
+                    <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;">
+                        <span>Liquidity Pool</span><span class="gold-text">90%</span>
+                    </div>
+                    <div class="bar-bg" data-info="Locked on Pump.fun protocol for 90 days">
+                        <div class="bar-fill" style="width:90%;"></div>
+                    </div>
+                </div>
+                <div class="alloc-item">
+                    <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;">
+                        <span>Community / Marketing</span><span>5%</span>
+                    </div>
+                    <div class="bar-bg" data-info="Used for community rewards & marketing initiatives">
+                        <div class="bar-fill" style="width:5%;"></div>
+                    </div>
+                </div>
+                <div class="alloc-item">
+                    <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;">
+                        <span>Development</span><span>5%</span>
+                    </div>
+                    <div class="bar-bg" data-info="Reserved for development & ecosystem growth">
+                        <div class="bar-fill" style="width:5%;"></div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="roadmap-item">  
-            <div class="phase-circle" style="background: #f87171; box-shadow: 0 0 15px #f87171; color:white;">5</div>  
-            <div class="phase-box glass-panel" style="border-color: #f87171;">  
-                <h3 class="phase-title meme-font text-red">PHASE 5</h3>  
-                <ul class="phase-list">  
-                    <li>Ecosystem launch</li>  
-                    <li>Major events</li>  
-                    <li>Governance DAO</li>  
-                    <li>Sustainability</li>  
-                </ul>  
-            </div>  
-        </div>  
-    </div>  
-</section>  
-
-<footer>  
-    <p class="text-gray" style="font-size: 12px; margin-bottom:10px;">  
-        $BKCO is a meme coin for entertainment purposes. Crypto is risky. DYOR.  
-    </p>  
-    <p style="font-size: 10px; color: #4b5563;">© 2026 Bulus King Project</p>  
-</footer>
-
-</div>  
-</body>  
-</html>
+            <!-- Animated Counters -->
+            <div class="card-grid mt-2" style="text-align:center;margin-top:2rem;">
+                <div class="card" style="padding:1.5rem;">
+                    <h3><span class="counter" data-target="1000000000">0</span></h3>
+                    <p>Total Supply</p>
+                </div>
+                <div class="card" style="padding:1.5rem;">
+                    <h3><span class="counter" data-target="1500">0</span>+</h3>
+                    <p>Holders</p
