@@ -65,8 +65,11 @@
         h1, h2, h3 {
             font-family: var(--font-title);
             color: white;
-            text-transform: uppercase;
             letter-spacing: 3px;
+        }
+
+        h2, h3 {
+            text-transform: uppercase;
         }
 
         h1 {
@@ -78,6 +81,7 @@
             -webkit-text-fill-color: transparent;
             animation: shineText 5s linear infinite;
             text-align: center;
+            text-transform: none; 
         }
 
         .subtitle {
@@ -126,14 +130,12 @@
             overflow: hidden;
         }
 
-        /* Hover Effect: Glow border & Lift */
         .card:hover {
             transform: translateY(-8px);
             border-color: rgba(197, 160, 89, 0.4);
             box-shadow: 0 15px 40px rgba(197, 160, 89, 0.1);
         }
 
-        /* Subtle inner gradient shine on hover */
         .card::before {
             content: '';
             position: absolute;
@@ -230,7 +232,7 @@
             color: #fff;
         }
 
-        /* --- 8. INTERACTIVE TRUST PROOF (ACCORDION) --- */
+        /* --- TRUST PROOF (ACCORDION) --- */
         details.trust-item {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -255,14 +257,13 @@
             padding: 1.2rem;
             font-family: var(--font-title);
             font-weight: 600;
-            list-style: none; /* Hide default triangle */
+            list-style: none;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        /* Custom Icon for Summary */
         summary::after {
             content: '+';
             font-size: 1.5rem;
@@ -307,10 +308,17 @@
             height: 100%;
             background: var(--accent-gold);
             box-shadow: 0 0 10px var(--accent-gold);
-            width: 0; /* JS Animation or Keyframe handled inline style */
+            width: 0;
         }
 
-        /* --- 6. FOOTER --- */
+        /* --- ROADMAP STYLING --- */
+        .roadmap-arrow {
+            color: var(--accent-gold);
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
         .footer {
             margin-top: 6rem;
             padding: 3rem 0;
@@ -341,7 +349,7 @@
 
         .footer p { font-size: 0.8rem; opacity: 0.6; margin-top: 1rem; }
 
-        /* --- ANIMATIONS KEYFRAMES --- */
+        /* --- ANIMATIONS --- */
         @keyframes shineBtn {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
@@ -436,13 +444,6 @@
         <h2 data-aos="fade-right">Trust Proof</h2>
         <div class="card-grid" data-aos="fade-up">
             <div>
-                 <details class="trust-item" onclick="playClick()">
-                    <summary><span class="check-green">✔</span> No Creator Liquidity</summary>
-                    <div class="details-content">
-                        Liquidity is automatically created and managed by the Pump.fun protocol. The creator receives 0 LP tokens and cannot rug pull liquidity.
-                    </div>
-                </details>
-
                 <details class="trust-item" onclick="playClick()">
                     <summary><span class="check-green">✔</span> Contract Verified</summary>
                     <div class="details-content">
@@ -515,6 +516,25 @@
 
         <div class="mt-2"></div>
 
+        <h2 data-aos="fade-right">Roadmap</h2>
+        <div class="card text-center" data-aos="fade-up" style="border: 1px solid var(--accent-gold-dim); padding-top: 3rem; padding-bottom: 3rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🐋</div>
+            <h3 style="margin-bottom: 1.5rem; color: #fff;">Dr Whale Roadmap</h3>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #fff; max-width: 800px; margin: 0 auto 1.5rem auto;">
+                Launch <span class="roadmap-arrow">→</span> 
+                Build Community <span class="roadmap-arrow">→</span> 
+                Simple Utility <span class="roadmap-arrow">→</span> 
+                Expansion <span class="roadmap-arrow">→</span> 
+                Sustainability
+            </p>
+            
+            <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 15px;">
+                Transparency first. No guaranteed profits. Always DYOR.
+            </p>
+        </div>
+        <div class="mt-2"></div>
+
         <div class="card" data-aos="fade-up" style="text-align: center; border-color: rgba(197, 160, 89, 0.3);">
             <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-muted);">
                 <i class="fas fa-exclamation-triangle gold-text"></i> Risk Notice
@@ -545,7 +565,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // 1. Initialize AOS (Scroll Animations)
         AOS.init({
             offset: 100,
             duration: 800,
@@ -553,7 +572,6 @@
             once: true
         });
 
-        // 2. Initialize Particles.js (Subtle Gold/Dust Effect)
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
@@ -570,7 +588,7 @@
                 },
                 "move": {
                     "enable": true,
-                    "speed": 1, /* Slow movement */
+                    "speed": 1,
                     "direction": "none",
                     "random": false,
                     "straight": false,
@@ -591,7 +609,6 @@
             "retina_detect": true
         });
 
-        // 3. Copy Function
         function copyAddress() {
             var copyText = document.getElementById("contractAddress");
             var originalText = copyText.innerText;
@@ -609,10 +626,9 @@
             }, 2000);
         }
 
-        // 4. Subtle Sound Effect (Optional)
         function playClick() {
             var audio = document.getElementById("clickSound");
-            audio.volume = 0.2; // Keep it very low volume
+            audio.volume = 0.2;
             audio.currentTime = 0;
             audio.play().catch(e => console.log("Audio play blocked by browser policy")); 
         }
